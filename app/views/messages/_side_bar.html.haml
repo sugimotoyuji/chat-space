@@ -5,20 +5,18 @@
         = current_user.name
       %ul.side-bar__header-box__menu
         %li.side-bar__header-box__menu-user
-          = link_to "#" , class: "menu__btn" do
+          = link_to new_group_path, class: "menu__btn" do
             = icon('fa', 'edit')
         %li.side-bar__header-box__menu-group
           = link_to edit_user_path(current_user) , class: "menu__btn" do
             = icon('fa', 'cog')
-  .groups
-    .group
-      .group__name
-        テック
-      .group__message
-        まだメッセージはありません
 
-    .group
-      .group__name
-        テック
-      .group__message
-        まだメッセージはありません
+
+  .groups
+    - current_user.groups.each do |group|
+      .group
+        .group__name
+          = group.name
+        .group__message
+          まだメッセージはありません
+
