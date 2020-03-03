@@ -15,8 +15,9 @@
   .groups
     - current_user.groups.each do |group|
       .group
-        .group__name
-          = group.name
-        .group__message
-          まだメッセージはありません
+        = link_to group_messages_path(group) do
+          .group__name
+            = group.name
+          .group__message
+            まだメッセージはありません
 
