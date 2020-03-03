@@ -2,21 +2,16 @@
   .chat-main__header
     .chat-main__header__box
       .chat-main__header__box__group
-        test
+        = @group.name
       .chat-main__header__box__member
-        member : yuji
+        member : 
+        - @users.each do |user|
+          = user.name
     .chat-main__header__edit-box
-      = link_to "#", class: "edit__btn" do
+      = link_to edit_group_path(params[:group_id]), class: "edit__btn" do
         edit
   .chat-main__messages
-    .chat-main__message
-      .chat-main__message-top
-        .chat-main__message__name
-          masa
-        .chat-main__message__date
-          2020/02.20
-      .chat-main__message-create
-        おはよう
+    = render @messages
     .chat-main__message
       .chat-main__message-top
         .chat-main__message__name
@@ -26,10 +21,10 @@
       .chat-main__message-create
         おはよう
   .chat-main__form
-    %form
+    = form_for [@group, @message] do |f|
+      = f.text_field :content, class: 'input-box__text', placeholder: 'type a message'
       .input-box
-        %input{type: "text", class: "input-box__text", placeholder: "type a messag"}
-        %label.input-box__image
-          = icon('fas', 'image')
-          %input{type:"file", class: "input-box__file"}
-      %input{type: "submit", class: "submit-btn"}
+        = f.label :image, class: 'input-box__image' do
+          = icon('fas', 'image', class: 'icon')
+          = f.file_field :image, class: 'input-box__file'
+      = f.submit 'Send', class: 'submit-btn'
