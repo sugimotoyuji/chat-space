@@ -43,6 +43,9 @@
   height: calc(100vh - 100px);
   .group {
     height: 100px;
+    .ggg {
+      text-decoration: none;
+    }
     &__name {
       font-size: 15px;
       padding: 20px 20px 5px;
@@ -57,3 +60,4 @@
     }
   }
 }
+
